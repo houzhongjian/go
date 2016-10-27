@@ -16,8 +16,12 @@ func main() {
 	//设置404页面的路由.
 	http.HandleFunc("/404", route.HttpNotFundHandle)
 
+	//设置注册路由.
+	http.HandleFunc("/register/", route.RegisterHandle)
+
 	http.Handle("/js/", http.FileServer(http.Dir("../template")))
 	http.Handle("/images/", http.FileServer(http.Dir("../template")))
+	http.Handle("/css/", http.FileServer(http.Dir("../template")))
 
 	//监听80端口.
 	http.ListenAndServe(":80", nil)
