@@ -34,8 +34,15 @@ func FindAll(sqlStr string) {
 }
 
 //查询一条数据.
-func FindOne(sqlStr string) {
+func FindOne(sqlStr string) (*Sql.Rows, error) {
+	db := GetInstance()
+	res, err := db.QueryRow(sqlStr)
 
+	rows := res
+	if err != nil {
+		return nil, err
+	}
+	return rows, nil
 }
 
 //连接数据库的单例模式.
