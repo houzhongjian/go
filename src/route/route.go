@@ -2,6 +2,7 @@ package route
 
 import (
 	"controller"
+	"fmt"
 	"html/template"
 	"net/http"
 	"reflect"
@@ -71,4 +72,42 @@ func HttpNotFundHandle(resp http.ResponseWriter, req *http.Request) {
 		t, _ := template.ParseFiles("../template/html/404.html")
 		t.Execute(resp, nil)
 	}
+}
+
+//设置注册路由.
+func RegisterHandle(resp http.ResponseWriter, req *http.Request) {
+
+	//获取url.
+	url := req.URL.Path
+
+	//去掉url前后的/.
+	url = strings.Trim(url, "/")
+
+	//将url以/拆分.
+	params := strings.Split(url, "/")
+
+	var ActionName string
+	if len(params) > 1 {
+		//将首字母转成大写.
+		ActionName = strings.Title(params[1] + "Action")
+
+	} else {
+
+		ActionName = "IndexAction"
+	}
+	fmt.Println(ActionName)
+	register := &controller.RegisterController{}
+	RegisterController := reflect.ValueOf(register)
+
+	regResp := reflect.ValueOf(resp)
+	regReq := reflect.ValueOf(req)
+
+	//捕获异常.
+	//	defer func() {
+	//		if err := recover(); err != nil {
+	//			http.Redirect(resp, req, "/404", http.StatusMovedPermanently)
+	//		}
+	//	}()
+
+	RegisterController.MethodByName(ActionName).Call([]reflect.Value{regResp, regReq})
 }
