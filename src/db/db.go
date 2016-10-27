@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"foundation"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "pkg/github.com/go-sql-driver/mysql"
 )
 
 //定义一个变量用来存储数据库的连接资源.
