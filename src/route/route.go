@@ -103,11 +103,11 @@ func RegisterHandle(resp http.ResponseWriter, req *http.Request) {
 	regReq := reflect.ValueOf(req)
 
 	//捕获异常.
-	//	defer func() {
-	//		if err := recover(); err != nil {
-	//			http.Redirect(resp, req, "/404", http.StatusMovedPermanently)
-	//		}
-	//	}()
+	defer func() {
+		if err := recover(); err != nil {
+			http.Redirect(resp, req, "/404", http.StatusMovedPermanently)
+		}
+	}()
 
 	RegisterController.MethodByName(ActionName).Call([]reflect.Value{regResp, regReq})
 }
