@@ -28,6 +28,16 @@ func Query(sqlStr string) bool {
 
 }
 
+//查询所有数据的方法.
+func FindAll(sqlStr string) {
+
+}
+
+//查询一条数据.
+func FindOne(sqlStr string) {
+
+}
+
 //连接数据库的单例模式.
 func GetInstance() *sql.DB {
 
