@@ -11,39 +11,34 @@ import (
 var dbInstance *sql.DB
 
 //执行sql语句的方法.
-func Query(sqlStr string) bool {
+//func Query(sqlStr string) bool {
 
-	//调用单例模式的方法.
-	db := GetInstance()
-	//	sqlStr := "INSERT INTO `user`(`id`,`username`,`password`)VALUES(null, '张三', md5(123))"
-	_, err := db.Exec(sqlStr)
+//	//调用单例模式的方法.
+//	db := GetInstance()
+//	//	sqlStr := "INSERT INTO `user`(`id`,`username`,`password`)VALUES(null, '张三', md5(123))"
+//	_, err := db.Exec(sqlStr)
 
-	var queryStatus bool = true
+//	var queryStatus bool = true
 
-	if err != nil {
-		queryStatus = false
-	}
+//	if err != nil {
+//		queryStatus = false
+//	}
 
-	return queryStatus
+//	return queryStatus
 
-}
+//}
 
 //查询所有数据的方法.
-func FindAll(sqlStr string) {
+//func FindAll(sqlStr string) {
 
-}
+//}
 
-//查询一条数据.
-func FindOne(sqlStr string) (*Sql.Rows, error) {
-	db := GetInstance()
-	res, err := db.QueryRow(sqlStr)
-
-	rows := res
-	if err != nil {
-		return nil, err
-	}
-	return rows, nil
-}
+////查询一条数据.
+//func FindOne(query string, args ...interface{}) *Row {
+//	db := GetInstance()
+//	res := db.QueryRow(query, args)
+//	return res
+//}
 
 //连接数据库的单例模式.
 func GetInstance() *sql.DB {
