@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"model"
 	"net/http"
+	"strings"
 )
 
 type RegisterController struct {
@@ -42,9 +43,9 @@ func (this *RegisterController) RegisterAction(resp http.ResponseWriter, req *ht
 		UserData := make(map[string]string)
 
 		//给map赋值.
-		UserData["username"] = UserName
-		UserData["password"] = PassWord
-		UserData["rePassword"] = RePassword
+		UserData["username"] = strings.Trim(UserName, " ")
+		UserData["password"] = strings.Trim(PassWord, " ")
+		UserData["rePassword"] = strings.Trim(RePassword, " ")
 
 		//将map传给模型来验证数据的合法性.
 		sta, err := model.AddUser(UserData)
