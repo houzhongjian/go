@@ -2,7 +2,6 @@ package route
 
 import (
 	"controller"
-	"fmt"
 	"html/template"
 	"net/http"
 	"reflect"
@@ -95,7 +94,7 @@ func RegisterHandle(resp http.ResponseWriter, req *http.Request) {
 
 		ActionName = "IndexAction"
 	}
-	fmt.Println(ActionName)
+
 	register := &controller.RegisterController{}
 	RegisterController := reflect.ValueOf(register)
 
