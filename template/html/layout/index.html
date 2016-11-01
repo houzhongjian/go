@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>侯忠建</title>
+		<script src="/js/jquery-1.9.1.min.js"></script>
+		<script src="js/index/index.js"></script>
+		<link rel="stylesheet" href="/css/font/font-awesome.css">
+		<style>
+			* {
+				padding:0px;
+				margin:0px;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+				font-size: 14px;
+			}
+			.container {
+				width:100%;
+				background:#fafafa;
+				padding-bottom: 1000px;
+				margin-bottom: -1000px; 
+				overflow: hidden;
+			}
+			.left {
+				width: 15%;
+				height: 1000px;
+				background: #5f6d7e;
+				position:fixed;
+				float: left;
+				min-width: 150px;
+			}
+			.head {
+				width: 100%;
+				text-align: center;
+				float:left;
+				margin-bottom: -500px;
+        		padding-bottom: 500px;
+			}
+			.head img {
+				width: 70%;
+				margin-top: 50px;
+				border-radius: 50%;
+				border: 3px solid #ffffff;
+			}
+			.head p {
+				margin-top: 10px;
+				color: #ffffff;
+				font-size: 26px;
+				text-align:center;
+			}
+			.nav {
+				width:100%;
+				font-size:14px;
+				float:left;
+				margin-top:50px;
+				font-size:14px;
+				text-align:center;
+				color:#ffffff;
+			}
+			.nav ul li {
+				list-style:none;
+				width:75%;
+				height:40px;
+				line-height:40px;
+				text-align:left;
+				padding-left:25%;
+			}
+			.nav ul li span {
+				padding-left:20px;
+			}
+			.category {
+				width:85%;
+				height:40px;
+				padding-left:15%;
+				font-size:16px;
+				font-weight:bold;
+				text-align:left;
+			}
+			.right {
+				float:right;				
+				width:80%;
+				background:#ffffff;
+			}
+		</style>
+		{{template "link"}}
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="left">
+				<div class="head">
+					<img  src="/images/face.jpg">
+					<p>侯忠建</p>
+				</div>
+				<div class="nav">
+					<div class="category">分类</div>
+					<ul>
+						<li><i class="icon-angle-right"></i><span>风骚原创</span></li>
+						<li><i class="icon-angle-right"></i><span>提姆队长</span></li>
+						<li><i class="icon-angle-right"></i><span>德玛西亚</span></li>
+						<li><i class="icon-angle-right"></i><span>PentaQ</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">{{template "right" .}}</div>
+		</div>
+	</body>
+</html>
