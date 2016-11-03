@@ -2,13 +2,13 @@ package controller
 
 import (
 	//	"database/sql"
-	//	"fmt"
+	"fmt"
 	"html/template"
 	"model"
 	"net/http"
 )
 
-type Data struct {
+type Category struct {
 	Id            int
 	Category_name string
 	Is_delete     int
@@ -28,6 +28,18 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	//查询分类.
 	rows := model.GetCategory()
 
+	//	fmt.Println(rows)
+
+	categorys := make([]*Category, 0)
+
+	for rows.Next() {
+		category := &Category{}
+		rows.Scan(&category.Id, &category.Category_name, &category.Is_delete, &category.Order, &category.Url)
+		categorys = append(categorys, category)
+	}
+
+	fmt.Println(categorys)
+
 	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
-	t.Execute(resp, map[string]interface{}{"Rows": rows})
+	t.Execute(resp, categorys)
 }

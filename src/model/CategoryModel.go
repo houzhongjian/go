@@ -15,7 +15,7 @@ const NOT_DELETE = "1"
 func GetCategory() *sql.Rows {
 
 	//定义查询首页类别的sql.
-	sql := "SELECT * FROM `category` WHERE `Is_delete` = " + DELETE + " ORDER BY `Order` DESC"
+	sql := "SELECT `Id`,`Category_name`,`Is_delete`,`Order`,`Url` FROM `category` WHERE `Is_delete` = " + DELETE + " ORDER BY `Order` DESC"
 
 	//获取db对象.
 	dbObj := db.GetInstance()
