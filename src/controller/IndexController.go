@@ -38,3 +38,7 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
 	t.Execute(resp, map[string]interface{}{"CategoryData": categorys})
 }
+
+func (this *IndexController) DemoAction(resp http.ResponseWriter, req *http.Request) {
+
+}
