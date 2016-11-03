@@ -1,6 +1,7 @@
 package model
 
 import (
+	"database/sql"
 	"db"
 	//	"fmt"
 )
@@ -11,7 +12,7 @@ const DELETE = "0"
 //已删除.
 const NOT_DELETE = "1"
 
-func GetCategory() Rows {
+func GetCategory() *sql.Rows {
 
 	//定义查询首页类别的sql.
 	sql := "SELECT * FROM `category` WHERE `is_delete` = " + DELETE + " ORDER BY `order` DESC"
@@ -19,11 +20,24 @@ func GetCategory() Rows {
 	//获取db对象.
 	dbObj := db.GetInstance()
 
-	Rows, _ := dbObj.Query(sql)
+	rows, _ := dbObj.Query(sql)
 
-	return Rows
+	return rows
 
-	//	fmt.Println(rows.Next())
-	//	fmt.Println("SQL:", sql)
-	//	fmt.Println(rows, err)
+	//	fmt.Println("sql:", sql)
+	//	for rows.Next() {
+	//		var id int
+	//		var category_name string
+	//		var is_delete int
+	//		var order int
+	//		var url string
+
+	//		err := rows.Scan(&id, &category_name, &is_delete, &order, &url)
+
+	//		if err != nil {
+	//			fmt.Println("err:", err)
+	//		}
+
+	//		fmt.Println(id, category_name, is_delete, order, url)
+	//	}
 }

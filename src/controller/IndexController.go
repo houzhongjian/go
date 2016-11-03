@@ -1,7 +1,7 @@
 package controller
 
 import (
-	//	"fmt"
+	"fmt"
 	"html/template"
 	"model"
 	"net/http"
@@ -18,14 +18,22 @@ const Layout = "../template/html/layout/"
 func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Request) {
 
 	//查询分类.
-	model.GetCategory()
+	rows := model.GetCategory()
 
-	//	for rows.Next() {
-	//		var category_name string
-	//		var url string
-	//		fmt.Println(category_name)
-	//		fmt.Println(url)
-	//	}
+	for rows.Next() {
+		var id int
+		var category_name string
+		var is_delete int
+		var order int
+		var url string
+		err := rows.Scan(&id, &category_name, &is_delete, &order, &url)
+
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println(id, category_name, is_delete, order, url)
+		}
+	}
 
 	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
 	value := map[string]string{"username": "侯忠建"}
