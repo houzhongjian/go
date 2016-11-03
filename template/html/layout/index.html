@@ -93,10 +93,9 @@
 				<div class="nav">
 					<div class="category">分类</div>
 					<ul>
-						<li><i class="icon-angle-right"></i><span>主页</span></li>
-						<li><i class="icon-angle-right"></i><span>技术分享</span></li>
-						<li><i class="icon-angle-right"></i><span>微博</span></li>
-						<li><i class="icon-angle-right"></i><span>关于</span></li>
+					{{range .CategoryData}}
+						<li><i class="icon-angle-right"></i><span>{{.Category_name}}</span></li>
+					{{end}}
 					</ul>
 				</div>
 			</div>

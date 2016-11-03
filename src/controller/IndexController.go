@@ -1,8 +1,6 @@
 package controller
 
 import (
-	//	"database/sql"
-	"fmt"
 	"html/template"
 	"model"
 	"net/http"
@@ -28,8 +26,6 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	//查询分类.
 	rows := model.GetCategory()
 
-	//	fmt.Println(rows)
-
 	categorys := make([]*Category, 0)
 
 	for rows.Next() {
@@ -38,8 +34,6 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 		categorys = append(categorys, category)
 	}
 
-	fmt.Println(categorys)
-
 	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
-	t.Execute(resp, categorys)
+	t.Execute(resp, map[string]interface{}{"CategoryData": categorys})
 }
