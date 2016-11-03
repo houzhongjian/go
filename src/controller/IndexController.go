@@ -1,12 +1,20 @@
 package controller
 
 import (
-	"fmt"
+	//	"database/sql"
+	//	"fmt"
 	"html/template"
 	"model"
 	"net/http"
 )
 
+type Data struct {
+	Id            int
+	Category_name string
+	Is_delete     int
+	Order         int
+	Url           string
+}
 type IndexController struct {
 }
 
@@ -20,22 +28,6 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	//查询分类.
 	rows := model.GetCategory()
 
-	for rows.Next() {
-		var id int
-		var category_name string
-		var is_delete int
-		var order int
-		var url string
-		err := rows.Scan(&id, &category_name, &is_delete, &order, &url)
-
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Println(id, category_name, is_delete, order, url)
-		}
-	}
-
 	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
-	value := map[string]string{"username": "侯忠建"}
-	t.Execute(resp, value)
+	t.Execute(resp, map[string]interface{}{"Rows": rows})
 }
