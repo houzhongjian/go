@@ -1,14 +1,21 @@
 $(function(){
-	init();
+	nav();
+	click();
 })
 
-function init(){
-	BindValue();
+function nav(){
+	$('.nav_li').hover(function(){
+		$(this).css('background', '#232c32')
+		$(this).css('cursor', 'pointer')
+	}, function(){
+		$(this).css('background', '#5f6d7e')
+	})
 }
 
-//发送请求获取首页的数据.
-function BindValue(){
-	$.get('/data?a=index',function(data){
-		
-	},'json')	
+function click() {
+	$('.nav_li').on('click', function(){
+		var path = $(this).attr('path')
+		console.debug(path)
+		window.location.href="http://"+path
+	})
 }

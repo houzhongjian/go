@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>侯忠建的博客</title>
 		<script src="/js/jquery-1.9.1.min.js"></script>
-		<script src="js/index/index.js"></script>
+		<script src="/js/index/index.js"></script>
 		<link rel="stylesheet" href="/css/font/font-awesome.css">
 		{{template "link"}}
 		<style>
@@ -94,7 +94,7 @@
 					<div class="category">分类</div>
 					<ul>
 					{{range .CategoryData}}
-						<li><i class="icon-angle-right"></i><span>{{.Category_name}}</span></li>
+						<li class="nav_li" path="{{.Url}}"><i class="icon-angle-right"></i><span>{{.Category_name}}</span></li>
 					{{end}}
 					</ul>
 				</div>
