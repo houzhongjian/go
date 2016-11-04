@@ -53,6 +53,7 @@ func (this *IndexController) DemoAction(resp http.ResponseWriter, req *http.Requ
 
 //查询分类.
 func GetCategory() []*Category {
+
 	rows := model.GetCategory()
 
 	categorys := make([]*Category, 0)
