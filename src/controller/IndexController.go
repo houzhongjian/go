@@ -32,6 +32,8 @@ type IndexController struct {
 
 //定义路径常量.
 const IndexPath = "../template/html/index/"
+
+//定义公共视图文件的常量.
 const Layout = "../template/html/layout/"
 
 //首页方法.
