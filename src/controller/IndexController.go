@@ -63,6 +63,7 @@ func GetCategory() []*Category {
 		rows.Scan(&category.Id, &category.Category_name, &category.Is_delete, &category.Order, &category.Url)
 		categorys = append(categorys, category)
 	}
+
 	return categorys
 }
 
