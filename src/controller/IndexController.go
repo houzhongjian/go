@@ -90,5 +90,6 @@ func GetArticle() []*Article {
 		articles = append(articles, article)
 	}
 
-	return articles
+	return articles\
+	
 }
