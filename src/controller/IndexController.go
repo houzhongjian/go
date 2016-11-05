@@ -104,7 +104,12 @@ func GetArticle() []*Article {
 //tmpl 为不定变长的参数可能会传入多个视图文件.
 func RequireHtml(resp http.ResponseWriter, data map[string]interface{}, tmpl ...string) {
 
+	//读取视图文件.
+	//tmpl为不定的变长参数.
+	//传入多个视图文件的话 tmpl 为一个数组.
 	t, _ := template.ParseFiles(tmpl...)
+
+	//渲染视图.
 	t.Execute(resp, data)
 
 }
