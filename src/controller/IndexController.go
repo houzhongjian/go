@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"fmt"
+	//	"fmt"
 	"html/template"
 	"model"
 	"net/http"
@@ -45,8 +47,11 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	//查询文章.
 	articles := GetArticle()
 
-	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
-	t.Execute(resp, map[string]interface{}{"CategoryData": categorys, "articlesData": articles})
+	//	t, _ := template.ParseFiles(Layout+"index.html", IndexPath+"right.html")
+	fmt.Println("categorys:", categorys)
+	fmt.Println("articles:", articles)
+	data := map[string]interface{}{"CategorysData": categorys, "ArticlesData": articles}
+	RequireHtml(resp, data, Layout+"index.html", IndexPath+"right.html")
 }
 
 func (this *IndexController) DemoAction(resp http.ResponseWriter, req *http.Request) {
@@ -92,6 +97,13 @@ func GetArticle() []*Article {
 		articles = append(articles, article)
 	}
 
-	return articles\
-	
+	return articles
+}
+
+//调用视图的公共方法.
+func RequireHtml(resp http.ResponseWriter, data map[string]interface{}, tmpl ...string) {
+
+	t, _ := template.ParseFiles(tmpl...)
+	t.Execute(resp, data)
+
 }
