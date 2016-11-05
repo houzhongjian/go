@@ -76,6 +76,7 @@ func GetArticle() []*Article {
 	//查询文章.
 	articleRow := model.GetArticle()
 
+	//创建一个指针数组.
 	articles := make([]*Article, 0)
 
 	for articleRow.Next() {
