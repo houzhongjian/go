@@ -54,10 +54,6 @@ func (this *IndexController) IndexAction(resp http.ResponseWriter, req *http.Req
 	RequireHtml(resp, data, Layout+"index.html", IndexPath+"right.html")
 }
 
-func (this *IndexController) DemoAction(resp http.ResponseWriter, req *http.Request) {
-
-}
-
 //查询分类.
 func GetCategory() []*Category {
 
