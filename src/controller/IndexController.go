@@ -101,6 +101,7 @@ func GetArticle() []*Article {
 }
 
 //调用视图的公共方法.
+//tmpl 为不定变长的参数可能会传入多个视图文件.
 func RequireHtml(resp http.ResponseWriter, data map[string]interface{}, tmpl ...string) {
 
 	t, _ := template.ParseFiles(tmpl...)
