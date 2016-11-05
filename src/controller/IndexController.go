@@ -79,6 +79,7 @@ func GetArticle() []*Article {
 	//创建一个指针数组.
 	articles := make([]*Article, 0)
 
+	//循环数据.
 	for articleRow.Next() {
 
 		//获取结构体.
