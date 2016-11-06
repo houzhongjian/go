@@ -1,9 +1,11 @@
 package controller
 
 import (
+	"crypto/md5"
 	"fmt"
 	"html/template"
 	"net/http"
+	"strings"
 )
 
 type LoginController struct {
@@ -21,5 +23,12 @@ func (this *LoginController) LoginAction(w http.ResponseWriter, r *http.Request)
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	fmt.Println(username, ":", password)
+	//去掉前后的空格.
+	username = strings.Trim(username, " ")
+	password = strings.Trim(password, " ")
+
+	//对密码进行加密.
+	encryption := md5.New()
+	fmt.Println(string(encryption.Sum([]byte(password))))
+
 }
