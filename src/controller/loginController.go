@@ -2,6 +2,7 @@ package controller
 
 import (
 	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -28,7 +29,8 @@ func (this *LoginController) LoginAction(w http.ResponseWriter, r *http.Request)
 	password = strings.Trim(password, " ")
 
 	//对密码进行加密.
+	//返回一个新的哈希散列来计算md5.
 	encryption := md5.New()
-	fmt.Println(string(encryption.Sum([]byte(password))))
-
+	encryption.Write([]byte(password))
+	password hex.EncodeToString(encryption.Sum(nil))
 }
