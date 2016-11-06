@@ -19,6 +19,9 @@ func main() {
 	//设置注册路由.
 	http.HandleFunc("/register/", route.RegisterHandle)
 
+	//设置后台登录路由.
+	http.HandleFunc("/manage/", route.ManageHandle)
+
 	http.Handle("/js/", http.FileServer(http.Dir("../template")))
 	http.Handle("/images/", http.FileServer(http.Dir("../template")))
 	http.Handle("/css/", http.FileServer(http.Dir("../template")))
