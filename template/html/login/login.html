@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>登录页面</title>
 <script src="/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-
+<script src="/js/login/login.js"></script>
 <style>
     body {
         background: #ebebeb;
@@ -178,7 +178,7 @@
     </div>
     <p style="padding: 30px 0px 10px; position: relative;">
 		<span class="u_logo"></span> 
-		<input class="ipt" type="text" name="username" placeholder="请输入用户名或邮箱" value="">
+		<input class="ipt" id="account" type="text" name="account" placeholder="请输入用户名或邮箱" value="">
     </p>
 
     <p style="position: relative;">
@@ -193,7 +193,7 @@
 			</span>
         	<span style="float: right;">
 				<a style="color: rgb(204, 204, 204); margin-right: 10px;" href="/register/index">注册</a>
-              	<button type="submit" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;">登录</button>
+              	<button type="button" id="button" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;">登录</button>
            </span>
 		</p>
 	</div>
