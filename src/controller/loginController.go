@@ -3,7 +3,7 @@ package controller
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"fmt"
+	//	"fmt"
 	"html/template"
 	"model"
 	"net/http"
@@ -36,6 +36,6 @@ func (this *LoginController) LoginAction(w http.ResponseWriter, r *http.Request)
 	password = hex.EncodeToString(encryption.Sum(nil))
 
 	//登录逻辑.
-	rs := model.Login(account, password)
-	fmt.Println(rs)
+	model.Login(account, password)
+
 }
