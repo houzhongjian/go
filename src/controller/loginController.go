@@ -32,5 +32,5 @@ func (this *LoginController) LoginAction(w http.ResponseWriter, r *http.Request)
 	//返回一个新的哈希散列来计算md5.
 	encryption := md5.New()
 	encryption.Write([]byte(password))
-	password hex.EncodeToString(encryption.Sum(nil))
+	password = hex.EncodeToString(encryption.Sum(nil))
 }
