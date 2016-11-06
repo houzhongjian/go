@@ -34,6 +34,9 @@ func Login(account string, password string) (bool, error) {
 	}
 
 	//验证帐号密码的有效性.
+	//根据account 来 查询 存放在数据库中加密过后的密码.
+	//将登录页面上填写的密码进行加密与account所对应的密码进行对比.
+	//如果对比成功则表示用户是真实的,否则表示登录失败.
 
 	return status, msg
 
