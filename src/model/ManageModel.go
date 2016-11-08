@@ -9,16 +9,10 @@ import (
 )
 
 func Login(account string, password string) {
-	fmt.Println("登录")
-	fmt.Println("account:", account)
-	fmt.Println("password:", password)
 
 	//定义一个登录的状态.
 	//这里定义true，表示登录成功.
 	status := true
-
-	//定义一个错误信息.
-	msg := "登录失败"
 
 	//验证登录的帐号.
 	ac := CheckAccount(account)
@@ -41,7 +35,7 @@ func Login(account string, password string) {
 	//根据account 来 查询 存放在数据库中加密过后的密码.
 	//将登录页面上填写的密码进行加密与account所对应的密码进行对比.
 	//如果对比成功则表示用户是真实的,否则表示登录失败.
-	CheckLogin(account, password)
+	status = CheckLogin(account, password)
 
 	fmt.Println(status, msg)
 	//	return status, msg
@@ -79,17 +73,20 @@ func CheckPassword(password string) error {
 //根据account 来 查询 存放在数据库中加密过后的密码.
 //将登录页面上填写的密码进行加密与account所对应的密码进行对比.
 //如果对比成功则表示用户是真实的,否则表示登录失败.
-func CheckLogin(account string, password string) {
+func CheckLogin(account string, password string) bool {
+
+	//定义一个状态用来存储默认登录成功的状态 true.
+	var loginStatus bool = true
 
 	type Manage struct {
 		id       int
 		username string
-		//		password string
+		password string
 		//		email    string
 		//		mobile   int
 	}
 	//定义sql.
-	sql := "SELECT `id`,`username` FROM `manage` WHERE `email` = ? OR `mobile` = ? OR `username` = ?"
+	sql := "SELECT `id`,`username`,`password` FROM `manage` WHERE `email` = ? OR `mobile` = ? OR `username` = ?"
 
 	//获取db对象.
 	obj := db.GetInstance()
@@ -102,10 +99,12 @@ func CheckLogin(account string, password string) {
 
 	//Scan方法是将查询出来的数据填充到各个指定的各个值中.
 	//这里我们填充到一个结构体中.
-	err := row.Scan(&manage.id, &manage.username)
+	err := row.Scan(&manage.id, &manage.username, &manage.password)
 
 	if err != nil {
-		fmt.Println("err:", err)
+
+		//如果有错误直接返回登录失败.
+		return loginStatus
 	}
 
 	//对密码进行加密.
@@ -114,6 +113,14 @@ func CheckLogin(account string, password string) {
 	encryption.Write([]byte(password))
 	password = hex.EncodeToString(encryption.Sum(nil))
 
-	fmt.Println(manage.id, manage.username)
+	//判断查询出来的密码与登陆时候填写的密码是否一致.
+	//这里登录页面传递过来的密码需要进行加密处理以后才能与查询出来的密码进行对比.
+	if manage.password != password {
 
+		//密码不相同就修改前面定义的默认登录状态.
+		//将状态修改成false.
+		loginStatus = false
+	}
+
+	return loginStatus
 }
