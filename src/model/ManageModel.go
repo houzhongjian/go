@@ -1,7 +1,9 @@
 package model
 
 import (
+	"crypto/md5"
 	"db"
+	"encoding/hex"
 	"errors"
 	"fmt"
 )
@@ -105,6 +107,12 @@ func CheckLogin(account string, password string) {
 	if err != nil {
 		fmt.Println("err:", err)
 	}
+
+	//对密码进行加密.
+	//返回一个新的哈希散列来计算md5.
+	encryption := md5.New()
+	encryption.Write([]byte(password))
+	password = hex.EncodeToString(encryption.Sum(nil))
 
 	fmt.Println(manage.id, manage.username)
 
