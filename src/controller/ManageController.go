@@ -5,6 +5,10 @@ import (
 	"net/http"
 )
 
+func init() {
+	//验证是否有登录.
+}
+
 //结构体.
 type ManageController struct {
 }
