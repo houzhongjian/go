@@ -82,11 +82,11 @@ func CheckLogin(account string, password string) bool {
 		id       int
 		username string
 		password string
-		//		email    string
-		//		mobile   int
+		email    string
+		mobile   int
 	}
 	//定义sql.
-	sql := "SELECT `id`,`username`,`password` FROM `manage` WHERE `email` = ? OR `mobile` = ? OR `username` = ?"
+	sql := "SELECT `id`,`username`,`password`,`email`,`mobile` FROM `manage` WHERE `email` = ? OR `mobile` = ? OR `username` = ?"
 
 	//获取db对象.
 	obj := db.GetInstance()
@@ -99,7 +99,7 @@ func CheckLogin(account string, password string) bool {
 
 	//Scan方法是将查询出来的数据填充到各个指定的各个值中.
 	//这里我们填充到一个结构体中.
-	err := row.Scan(&manage.id, &manage.username, &manage.password)
+	err := row.Scan(&manage.id, &manage.username, &manage.password, &manage.email, &manage.mobile)
 
 	if err != nil {
 
