@@ -160,3 +160,9 @@ func ManageHandle(resp http.ResponseWriter, req *http.Request) {
 	ManageController.MethodByName(ActionName).Call([]reflect.Value{manResp, manReq})
 
 }
+
+func DetailHandle(resp http.ResponseWriter, req *http.Request) {
+	//获取url.
+	url := req.URL.Path
+	resp.Write([]byte(url))
+}

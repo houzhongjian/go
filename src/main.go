@@ -22,6 +22,9 @@ func main() {
 	//设置后台登录路由.
 	http.HandleFunc("/manage/", route.ManageHandle)
 
+	//设置访问详细的目录.
+	http.HandleFunc("/detail/", route.DetailHandle)
+
 	http.Handle("/js/", http.FileServer(http.Dir("../template")))
 	http.Handle("/images/", http.FileServer(http.Dir("../template")))
 	http.Handle("/css/", http.FileServer(http.Dir("../template")))

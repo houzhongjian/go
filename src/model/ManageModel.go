@@ -37,7 +37,7 @@ func Login(account string, password string) {
 	//如果对比成功则表示用户是真实的,否则表示登录失败.
 	status = CheckLogin(account, password)
 
-	fmt.Println(status, msg)
+	fmt.Println(status)
 	//	return status, msg
 
 	//根据account来查询密码然后对比加密后的密码与传入过来的密码是否相同.
